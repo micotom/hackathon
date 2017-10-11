@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_margin="12dp"
+    tools:context="com.bragi.hackathon.MainActivity"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_bold"
+        android:layout_marginTop="12dp"
+        android:text="Dash Connection Status"
+        />
+
+    <TextView
+        android:id="@+id/dash_connection_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_light"
+        tools:text="Connected"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_bold"
+        android:layout_marginTop="24dp"
+        android:text="Data transfer"
+        />
+
+    <TextView
+        android:id="@+id/data_channel_connection_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_light"
+        tools:text="Connected"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_bold"
+        android:layout_marginTop="24dp"
+        android:text="Data transfer"
+        />
+
+    <TextView
+        android:id="@+id/data_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_light"
+        android:gravity="center"
+        tools:text="['device_id': '5','accx': '5.0', 'accy': '100.0', 'accz': '34.1'}"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_bold"
+        android:layout_marginTop="24dp"
+        android:text="Response"
+        />
+
+    <TextView
+        android:id="@+id/response_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_light"
+        android:gravity="center"
+        tools:text="['device_id': '5','accx': '5.0', 'accy': '100.0', 'accz': '34.1'}"
+        />
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/markpro_black"
+        android:layout_marginTop="24dp"
+        android:text="Send"/>
+
+</LinearLayout>
