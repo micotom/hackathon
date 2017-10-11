@@ -10,8 +10,10 @@ import com.bragi.dash.sdk.init.SdkInitCallback
 import com.bragi.dash.sdk.init.auth.ApiKey
 import com.bragi.dash.sdk.listener.AccelerometerListener
 import com.bragi.dash.sdk.listener.ConnectionStatusListener
+import com.bragi.dash.sdk.listener.HeadMovementListener
 import com.bragi.dash.sdk.listener.HeartRateListener
 import com.bragi.dash.sdk.model.Connectivity
+import com.bragi.dash.sdk.model.HeadMovement
 import com.bragi.dash.sdk.model.HeartRate
 import com.bragi.dash.sdk.model.RawMotionData
 import com.bragi.hackathon.MainActivity
@@ -41,6 +43,7 @@ object DashConnector : SdkInitCallback, ConnectionStatusListener() {
     }
 
     fun connect(context: Context) {
+        Timber.d("connect")
         SdkManager.connectDevice(
                 PendingIntent.getActivity(
                         context, 0x0,
@@ -81,11 +84,22 @@ object DashConnector : SdkInitCallback, ConnectionStatusListener() {
         }
     }
 
+    fun readHeadGestures() {
+        if (device.deliversData) {
+            device.registerForHeadMovement(object: HeadMovementListener() {
+                override fun onNewHeadMovement(movement: HeadMovement) {
+                    pubNubWriter.write("[hm&${movement.type}]")
+                }
+            })
+        }
+    }
+
     override fun onSdkInitError(p0: InitializedInfo.Error?) {
         Timber.d("sdk init error: $p0")
     }
 
     override fun onNewConnectionStatus(status: Connectivity) {
+        Timber.d("new connection status ${status.status}")
         val state = when (status.status) {
             Connectivity.Status.SUCCESS -> DashChannel.ConnectionState.CONNECTED
             Connectivity.Status.CONNECTION_LOST -> DashChannel.ConnectionState.CONNECTION_LOST

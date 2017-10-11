@@ -6,10 +6,14 @@ import com.bragi.hackathon.comm.dash.DashChannel
 import com.bragi.hackathon.comm.dash.DashConnector
 import com.bragi.hackathon.comm.dash.DataChannel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val subscriptions = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,17 +22,41 @@ class MainActivity : AppCompatActivity() {
         DashConnector.lateInit(this)
 
         connect_button.isEnabled = false
-        DashChannel.sdkStateSubjectObservable.observeOn(AndroidSchedulers.mainThread()).subscribe {
-            onNewSdkState(it)
-        }
 
-        DashChannel.connectionStateObservable.observeOn(AndroidSchedulers.mainThread()).subscribe {
-            onNewConnectionState(it)
-        }
+        //if (subscriptions.isDisposed) {
+            scheduleSubscriptions()
+        //}
+    }
 
-        DataChannel.incomingMessageObservable.subscribe {
+    private fun scheduleSubscriptions() {
+        subscriptions.addAll(
+                subscribeForSdkState(),
+                subscribeForDashConnectionState(),
+                subscribeForNetChannel()
+        )
+    }
+
+    private fun subscribeForNetChannel(): Disposable? {
+        return DataChannel.incomingMessageObservable.subscribe {
             data_text.text = it
         }
+    }
+
+    private fun subscribeForDashConnectionState(): Disposable? {
+        return DashChannel.connectionStateObservable.observeOn(AndroidSchedulers.mainThread()).subscribe {
+            onNewConnectionState(it)
+        }
+    }
+
+    private fun subscribeForSdkState(): Disposable? {
+        return DashChannel.sdkStateSubjectObservable.observeOn(AndroidSchedulers.mainThread()).subscribe {
+            onNewSdkState(it)
+        }
+    }
+
+    override fun onDestroy() {
+        subscriptions.dispose()
+        super.onDestroy()
     }
 
     private fun onNewConnectionState(it: DashChannel.ConnectionState?) {
@@ -37,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 dash_connection_status_text.text = getString(R.string.connected)
                 DashConnector.readAcc()
                 DashConnector.readHr()
+                DashConnector.readHeadGestures()
             }
             DashChannel.ConnectionState.CONNECTION_LOST -> {
                 dash_connection_status_text.text = getString(R.string.connection_lost)
