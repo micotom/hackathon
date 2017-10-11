@@ -3,7 +3,7 @@ package com.bragi.hackathon
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
 
-object ChannelState {
+object DataChannel {
 
     private val dataInSubject = PublishSubject.create<String>()
 

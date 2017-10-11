@@ -15,7 +15,7 @@ class PubNubReader : RemoteReader, SubscribeCallback() {
     }
 
     override fun onDataRead(content: String) {
-        ChannelState.writeIncomingMessage(content)
+        DataChannel.writeIncomingMessage(content)
     }
 
     override fun status(pubnub: PubNub?, status: PNStatus?) {
