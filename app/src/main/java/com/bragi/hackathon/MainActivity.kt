@@ -68,9 +68,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNewSdkState(it: DashChannel.SdkState?) {
         if (it == DashChannel.SdkState.INITIALIZED) {
-            connect_button.isEnabled = true
-            connect_button.setOnClickListener {
-                DashConnector.connect(this)
+            connect_button.apply {
+                isEnabled = true
+                setOnClickListener { DashConnector.connect(this@MainActivity) }
             }
         } else {
             connect_button.isEnabled = false
