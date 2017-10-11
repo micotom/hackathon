@@ -1,4 +1,4 @@
-package com.bragi.hackathon
+package com.bragi.hackathon.comm.dash
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject

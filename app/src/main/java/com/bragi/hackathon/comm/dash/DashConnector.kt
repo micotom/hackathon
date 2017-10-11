@@ -1,4 +1,4 @@
-package com.bragi.hackathon
+package com.bragi.hackathon.comm.dash
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
@@ -14,6 +14,8 @@ import com.bragi.dash.sdk.listener.HeartRateListener
 import com.bragi.dash.sdk.model.Connectivity
 import com.bragi.dash.sdk.model.HeartRate
 import com.bragi.dash.sdk.model.RawMotionData
+import com.bragi.hackathon.MainActivity
+import com.bragi.hackathon.comm.pubnub.PubNubWriter
 import timber.log.Timber
 
 @SuppressLint("StaticFieldLeak")

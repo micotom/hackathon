@@ -1,4 +1,4 @@
-package com.bragi.hackathon
+package com.bragi.hackathon.comm.pubnub
 
 import com.pubnub.api.PNConfiguration
 import com.pubnub.api.PubNub

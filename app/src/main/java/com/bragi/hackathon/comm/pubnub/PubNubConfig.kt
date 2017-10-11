@@ -1,4 +1,4 @@
-package com.bragi.hackathon
+package com.bragi.hackathon.comm.pubnub
 
 object PubNubConfig {
 

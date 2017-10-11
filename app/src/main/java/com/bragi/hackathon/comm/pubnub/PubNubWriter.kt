@@ -1,8 +1,7 @@
-package com.bragi.hackathon
+package com.bragi.hackathon.comm.pubnub
 
 import android.util.Log
-import com.pubnub.api.PNConfiguration
-import com.pubnub.api.PubNub
+import com.bragi.hackathon.comm.RemoteWriter
 import com.pubnub.api.callbacks.PNCallback
 import com.pubnub.api.models.consumer.PNPublishResult
 import com.pubnub.api.models.consumer.PNStatus
