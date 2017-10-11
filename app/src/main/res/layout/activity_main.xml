@@ -36,22 +36,6 @@
         />
 
     <TextView
-        android:id="@+id/data_channel_connection_status_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/markpro_light"
-        tools:text="Connected"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/markpro_bold"
-        android:layout_marginTop="24dp"
-        android:text="Data transfer"
-        />
-
-    <TextView
         android:id="@+id/data_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
