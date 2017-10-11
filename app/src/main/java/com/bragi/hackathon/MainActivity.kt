@@ -18,14 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         DashConnector.lateInit(this)
-
-        connect_button.isEnabled = false
-
-        //if (subscriptions.isDisposed) {
-            scheduleSubscriptions()
-        //}
+        scheduleSubscriptions()
     }
 
     private fun scheduleSubscriptions() {
