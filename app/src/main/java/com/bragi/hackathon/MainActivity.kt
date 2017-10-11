@@ -56,12 +56,15 @@ class MainActivity : AppCompatActivity() {
         when (it) {
             DashChannel.ConnectionState.CONNECTED -> {
                 dash_connection_status_text.text = getString(R.string.connected)
+                connect_button.isEnabled = false
             }
             DashChannel.ConnectionState.CONNECTION_LOST -> {
                 dash_connection_status_text.text = getString(R.string.connection_lost)
+                connect_button.isEnabled = true
             }
             DashChannel.ConnectionState.NO_DEVICE -> {
                 dash_connection_status_text.text = getString(R.string.no_device)
+                connect_button.isEnabled = true
             }
         }
     }
