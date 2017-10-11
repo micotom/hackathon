@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DashConnector.lateInit(this)
         scheduleSubscriptions()
     }
 
@@ -57,9 +56,6 @@ class MainActivity : AppCompatActivity() {
         when (it) {
             DashChannel.ConnectionState.CONNECTED -> {
                 dash_connection_status_text.text = getString(R.string.connected)
-                DashConnector.readAcc()
-                DashConnector.readHr()
-                DashConnector.readHeadGestures()
             }
             DashChannel.ConnectionState.CONNECTION_LOST -> {
                 dash_connection_status_text.text = getString(R.string.connection_lost)

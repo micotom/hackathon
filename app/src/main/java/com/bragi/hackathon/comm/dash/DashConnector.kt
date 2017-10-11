@@ -1,6 +1,5 @@
 package com.bragi.hackathon.comm.dash
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -20,7 +19,6 @@ import com.bragi.hackathon.MainActivity
 import com.bragi.hackathon.comm.pubnub.PubNubWriter
 import timber.log.Timber
 
-@SuppressLint("StaticFieldLeak")
 object DashConnector : SdkInitCallback, ConnectionStatusListener() {
 
     private val device = SdkManager.bragiDevice
@@ -106,6 +104,15 @@ object DashConnector : SdkInitCallback, ConnectionStatusListener() {
             Connectivity.Status.NO_DEVICE -> DashChannel.ConnectionState.NO_DEVICE
         }
         DashChannel.setConnectionState(state)
+        if (state == DashChannel.ConnectionState.CONNECTED) {
+            startReadings()
+        }
+    }
+
+    private fun startReadings() {
+        readAcc()
+        readHr()
+        readHeadGestures()
     }
 
 }
