@@ -38,8 +38,12 @@ class MainActivity : AppCompatActivity() {
                 DashConnector.readAcc()
                 DashConnector.readHr()
             }
-            else -> {
-            } // ignore
+            DashChannel.ConnectionState.CONNECTION_LOST -> {
+                dash_connection_status_text.text = getString(R.string.connection_lost)
+            }
+            DashChannel.ConnectionState.NO_DEVICE -> {
+                dash_connection_status_text.text = getString(R.string.no_device)
+            }
         }
     }
 
